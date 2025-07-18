@@ -107,3 +107,4 @@ package-lock.json
 lockData.json
 docs/capture/
 myEnv.sh
+.DS_Store

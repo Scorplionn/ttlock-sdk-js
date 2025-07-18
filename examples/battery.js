@@ -18,10 +18,14 @@ async function doStuff() {
     if (lock.isInitialized() && lock.isPaired()) {
       await lock.connect();
       console.log();
-      console.log("Trying to CLEAR passcodes ...");
-      const result = await lock.clearPassCodes();
+      console.log("Trying to GET battery STATUS % ...");
+      const result = await lock.getBattery();
+
+      console.log("Result: ", result, "%");
+
       await lock.disconnect();
       console.log("###");
+
       process.exit(0);
     }
   });

@@ -2,6 +2,7 @@
 
 const { TTLockClient, sleep, PassageModeType } = require('../dist');
 const settingsFile = "lockData.json";
+require('log-timestamp')(function() { return new Date().toLocaleTimeString()+" | " });
 
 async function doStuff() {
   let lockData = await require("./common/loadData")(settingsFile);
@@ -12,16 +13,16 @@ async function doStuff() {
   client.startScanLock();
   console.log("Scan started");
   client.on("foundLock", async (lock) => {
-    console.log(lock.toJSON());
     console.log();
-    
+
     if (lock.isInitialized() && lock.isPaired()) {
       await lock.connect();
-      console.log("Trying to delete passcode");
       console.log();
-      console.log();
-      const result = await lock.deletePassCode(1, '654321');
+      console.log("Trying to DELETE passcode");
+
+      const result = await lock.deletePassCode(1, '9999');
       await lock.disconnect();
+      console.log("###");
 
       process.exit(0);
     }

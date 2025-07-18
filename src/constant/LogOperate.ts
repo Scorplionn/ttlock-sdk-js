@@ -187,6 +187,12 @@ export enum LogOperate {
 
   //42 ~ 48 no parameters
 
+  //45 my addition for auto lock after end of passage mode?
+  AUTO_LOCK = 45,
+
+  //47 my addition for lock by # key
+  HASH_LOCK = 47,
+
   /**
    * Wireless key
    */

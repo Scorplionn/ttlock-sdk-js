@@ -12,7 +12,7 @@ async function doStuff() {
   client.startMonitor();
   console.log("Scan started");
   client.on("foundLock", async (lock) => {
-    console.log(lock.toJSON());
+    //console.log(lock.toJSON());
     console.log();
 
     lock.on("locked", (l) => {

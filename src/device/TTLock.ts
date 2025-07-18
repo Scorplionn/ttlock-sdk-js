@@ -362,17 +362,17 @@ export class TTLock extends TTLockApi implements TTLock {
       console.log("========= check user time");
       const psFromLock = await this.checkUserTime();
       console.log("========= check user time", psFromLock);
-      console.log("========= unlock");
+      console.log("========= UNLOCK  Start");
       const unlockData = await this.unlockCommand(psFromLock);
-      console.log("========= unlock", unlockData);
+      console.log("========= UNLOCK  End...", unlockData);
       this.lockedStatus = LockedStatus.UNLOCKED;
       this.emit("unlocked", this);
       // if autolock is on, then emit locked event after the timeout has passed
       if (this.autoLockTime > 0) {
-        setTimeout(() => {
-          this.lockedStatus = LockedStatus.LOCKED;
-          this.emit("locked", this);
-        }, this.autoLockTime * 1000);
+       setTimeout(() => {
+         this.lockedStatus = LockedStatus.LOCKED;
+         this.emit("locked", this);
+       }, this.autoLockTime * 1000);
       }
     } catch (error) {
       console.error("Error unlocking the lock", error);
@@ -1264,7 +1264,7 @@ export class TTLock extends TTLockApi implements TTLock {
       let sequence = 0xffff;
       let retry = 0;
       do {
-        console.log("========= get OperationLog", sequence);
+        console.log("========= get OperationLog (New)", sequence);
         try {
           const response = await this.getOperationLogCommand(sequence);
           sequence = response.sequence;
@@ -1463,33 +1463,6 @@ export class TTLock extends TTLockApi implements TTLock {
         operationLog: this.operationLog
       };
       return data;
-    }
-  }
-
-  /** Just for debugging */
-  toJSON(asObject: boolean = false): string | Object {
-    let json: Object = this.device.toJSON(true);
-
-    if (this.featureList) Reflect.set(json, 'featureList', this.featureList);
-    if (this.switchState) Reflect.set(json, 'switchState', this.switchState);
-    if (this.lockSound) Reflect.set(json, 'lockSound', this.lockSound);
-    if (this.displayPasscode) Reflect.set(json, 'displayPasscode', this.displayPasscode);
-    if (this.autoLockTime) Reflect.set(json, 'autoLockTime', this.autoLockTime);
-    if (this.lightingTime) Reflect.set(json, 'lightingTime', this.lightingTime);
-    if (this.remoteUnlock) Reflect.set(json, 'remoteUnlock', this.remoteUnlock);
-    if (this.deviceInfo) Reflect.set(json, 'deviceInfo', this.deviceInfo);
-    const privateData: Object = {};
-    if (this.privateData.aesKey) Reflect.set(privateData, 'aesKey', this.privateData.aesKey.toString("hex"));
-    if (this.privateData.admin) Reflect.set(privateData, 'admin', this.privateData.admin);
-    if (this.privateData.adminPasscode) Reflect.set(privateData, 'adminPasscode', this.privateData.adminPasscode);
-    if (this.privateData.pwdInfo) Reflect.set(privateData, 'pwdInfo', this.privateData.pwdInfo);
-    Reflect.set(json, 'privateData', privateData);
-    if (this.operationLog) Reflect.set(json, 'operationLog', this.operationLog);
-
-    if (asObject) {
-      return json;
-    } else {
-      return JSON.stringify(json);
     }
   }
 }

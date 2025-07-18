@@ -112,6 +112,7 @@ export abstract class TTLockApi extends EventEmitter {
       newEvents: (this.device.hasEvents && this.newEvents != this.device.hasEvents),
       lockedStatus: false
     }
+//    console.log("> updFromTTDev > ", this.device.rssi, this.rssi, this.lockedStatus);
     this.batteryCapacity = this.device.batteryCapacity;
     this.rssi = this.device.rssi;
     this.initialized = !this.device.isSettingMode;
@@ -124,7 +125,7 @@ export abstract class TTLockApi extends EventEmitter {
       this.lockedStatus = LockedStatus.LOCKED;
     }
 
-    if (paramsChanged.batteryCapacity || paramsChanged.lockedStatus || paramsChanged.newEvents) {
+    if (paramsChanged.batteryCapacity || paramsChanged.newEvents) {
       console.log("Emmiting paramsChanged", paramsChanged);
       this.emit("updated", this, paramsChanged);
     }

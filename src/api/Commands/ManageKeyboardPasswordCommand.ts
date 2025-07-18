@@ -49,7 +49,9 @@ export class ManageKeyboardPasswordCommand extends Command {
     } else {
       return false;
     }
+    console.log("Add Pin startdate: ", startDate);
     this.startDate = moment(startDate, "YYYYMMDDHHmm");
+    console.log("Add Pin this startdate: ", this.startDate);
     if (!this.startDate.isValid()) {
       return false;
     }
@@ -103,7 +105,7 @@ export class ManageKeyboardPasswordCommand extends Command {
   private buildAdd(): Buffer {
     if (typeof this.type != "undefined" && typeof this.passCode != "undefined" && this.startDate && this.endDate) {
       let data: Buffer;
-      if (this.type == KeyboardPwdType.PWD_TYPE_PERMANENT) {
+      if (this.type != KeyboardPwdType.PWD_TYPE_PERMANENT) {
         data = Buffer.alloc(1 + 1 + 1 + this.passCode.length + 5 + 5);
       } else {
         data = Buffer.alloc(1 + 1 + 1 + this.passCode.length + 5);

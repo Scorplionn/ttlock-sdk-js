@@ -1,6 +1,6 @@
 {
-  "name": "ttlock-sdk-js",
-  "version": "0.3.14",
+  "name": "ttlock-local",
+  "version": "0.1.0",
   "description": "JavaScript port of the TTLock Android SDK",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -40,10 +40,6 @@
     "server-tool": "NOBLE_REPORT_ALL_HCI_EVENTS=1 node ./tools/server.js",
     "dump-tool": "npm run build && node ./tools/dumpCapture.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kind3r/ttlock-sdk-js.git"
-  },
   "keywords": [
     "ttlock",
     "sdk",
@@ -54,12 +50,6 @@
     "iot",
     "unofficial"
   ],
-  "author": "Emanuel Posescu <kind3r@gmail.com>",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/kind3r/ttlock-sdk-js/issues"
-  },
-  "homepage": "https://github.com/kind3r/ttlock-sdk-js#readme",
   "devDependencies": {
     "@tsconfig/node12": "^1.0.7",
     "@types/crypto-js": "^4.0.1",
@@ -73,6 +63,7 @@
     "@abandonware/noble": "^1.9.2-13",
     "chalk": "^4.1.0",
     "crypto-js": "^4.0.0",
+    "log-timestamp": "^0.3.0",
     "moment": "^2.29.1",
     "reconnecting-websocket": "^4.4.0",
     "ws": "^7.4.2"

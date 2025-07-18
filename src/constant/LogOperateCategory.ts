@@ -10,6 +10,8 @@ export let LogOperateCategory = {
     LogOperate.PASSCODE_LOCK,
     LogOperate.IC_LOCK,
     LogOperate.OPERATE_KEY_LOCK,
+    LogOperate.AUTO_LOCK,
+    LogOperate.HASH_LOCK,
 
   ],
   UNLOCK: [
