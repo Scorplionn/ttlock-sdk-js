@@ -18,7 +18,7 @@ async function doStuff() {
     if (lock.isInitialized() && lock.isPaired()) {
       await lock.connect();
       console.log();
-      console.log("Now Collecting some LOCK Infomation  ...     !(muzza)");
+      console.log("Now Collecting some LOCK Infomation  ... ");
       console.log();
       const result = await lock.getModel();
       const result2= await lock.getBattery();
@@ -37,10 +37,9 @@ async function doStuff() {
       console.log("FirmWare:    ", result5, " ")
       console.log("Battery:     ", result2, "%");;
       console.log("RSSI:        ", result7, "dBm");
-
+      console.log("Now Disconnect ...");
       await lock.disconnect();
-      console.log("###");
-
+      console.log("### End Process ###");
       process.exit(0);
     }
   });
